@@ -1,35 +1,188 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>個人網頁</title>
+    <meta charset="utf-8">
+    <h1><br><u>放射科胸部檢查表單radiology chest check form</u><br><h1>
+   
 </head>
-<body background="http://www.dora-world.com.tw/upload/2018_03_16_0940280.jpg ">
-<h1><br><u>Hello！我是魯精湛</u><br></h1>
-<h2><br>個人資料表格</h2>
-  <table border="1">
-   <tr>
-　<td>姓名：Lu Jingzhan</td>
-  <td>職業：學生</td>
-　</tr>
-　<tr>
-　<td>學號：106316153</td>
-  <td>年齡：19 </td>
-　</tr>
-　<tr>
-  <td>家鄉：武漢市<br></td>
-  <td>興趣：吃飯睡覺</td>
-　</tr>
-  <tr>
-  <td>星座：雙魚座</td></td>
-  <td>學校：慈濟大學</td>
-　</tr>
-</table>
-<h2><br>主修：醫學資訊系</h2>
-<h2><a href='http://www.mitest.tcu.edu.tw/news.html'>讓人頭大的Medical informatics</a></h2> 
-<h2><br>日常遊戲：Pokemon Go</h2><br>
-<h2><br>自介：佛系大學生，未來IELTS 7！</h2>
- <h2><br>Welcome to Wuhan~<br></h2>
-<img src="http://image.wenweipo.com/2016/09/13/b09b.jpg ">
-<h2><br>人生格言</h2>
- <h2><a href='https://www.google.com.tw/'>沒有什麼事情是Google不能解決的</a></h2> 
+<script type="text/javascript">
+    function checkn() {
+        if (reg.name.value == "") {
+            alert("未輸入姓名");
+        }
+
+        else reg.submit();
+    }
+    function checkt() {
+        if (isNaN(reg.tel.value)) {
+            alert("電話號碼只能為純數字");
+        }
+        else reg.submit();
+    }
+    var patient = { "name": "Chalmers", "tel": 12345678, "age": "45", "bir": "1974-12-25" };
+
+    function load() {
+        document.getElementById("name").value = "Chalmers";
+        document.getElementById("tel").value = "12345678";
+        document.getElementById("age").value = "45";
+        document.getElementById("bir").value = "1974-12-25";
+    }
+
+    function Bmi() {
+        if (isNaN(reg.tall.value)) {
+            alert("輸入數字");
+
+        }
+        if (isNaN(reg.weight.value)) {
+            alert("輸入數字");
+
+        }
+        else
+            var tall = document.getElementById("tall").value;
+        var weight = document.getElementById("weight").value;
+        //alert(h + w);
+        var bmi = weight / ((tall * 0.01) * (tall * 0.01));
+        alert('BMI= ' + bmi + '\n');
+
+    }
+
+
+    function get() {
+        var name_element = document.getElementById('name');
+        var name = name_element.value;
+
+        var bir_element = document.getElementById('bir');
+        var bir = bir_element.value;
+
+        var tel_element = document.getElementById('tel');
+        var tel = tel_element.value;
+
+        var age_element = document.getElementById('age');
+        var age = age_element.value;
+
+        var job_element = document.getElementById('job');
+        var job = job_element.value;
+
+
+        var gender;
+        var M_element = document.getElementById('M');
+        var M = M_element.checked;
+        var F_element = document.getElementById('F');
+        var F = F_element.checked;
+
+        if (M) {
+            gender = M_element.value;
+        }
+        else
+            gender = F_element.value;
+
+
+        alert(name + '\n' + bir + '\n' + tel + '\n' + age + '\n' + job + '\n' + gender + '\n' + bmi);
+    }
+
+
+</script>
+<body background="http://image.topit.cc/uploads/20180804/17/1533373232-DLWdIkvUul.jpg ">
+    <form id="orderForm1" action="http://203.64.84.113/x/RQ_RS.aspx" method="post" name="reg">
+        <h3> 病人基本資料Patient:<br></h3>
+        <h4>姓名Name：<input id="name" type="text"  name="cname" value="" size="16" /><br></h4>
+        <input type="button" value="檢查姓名" onClick="checkn()" /> &nbsp;&nbsp;&nbsp;
+      
+
+        <h4>性別Gender:<br></h4>
+        <input type="radio" id="M" name="Gender" value="男性" checked> Male
+        <input type="radio" id="F" name="Gender" value="女性"> Female <br>
+       
+        <p>
+<label for="tall">身高:</label>
+<input name="tall" type="text" id="tall" size="10">
+公分</p>
+<p>體重:
+<input name="weight" type="text" id="weight" size="10">
+公斤</p>
+<p>
+<input type="submit" name="submit" id="submit" value="計算BMI" onClick="Bmi()">
+</p>
+
+        <h4>生日Birth:<input type="text" id="bir"   name="cage" value="" size="10"><br></h4>
+
+         <h4>年齡Age:<input type="text" id="age" name="cage" value="" size="10"><br></h4>    
+        職業Job:<select id="job" name="work">
+            <option value="Student" selected>學生
+            <option value="Teacher">老師
+            <option value="IT">IT
+            <option value="Business">商業
+            <option value="Others">其他
+        </select><br>
+
+         <h4>電話號碼Tel:<input type="text" id="tel" name="ctel"  value=""  size="10"><br></h4>
+          <input type="button" value="檢查電話" onClick="checkt()" /> &nbsp;&nbsp;&nbsp;
+           
+        <br> <input type="button" value="填入預設資料" onClick="load()" /> &nbsp;&nbsp;&nbsp;
+            <input type="reset" value="清除" /></br>
+
+            <br> <input type="button" value="顯示已填資料" onClick="get()" /> &nbsp;&nbsp;&nbsp;
+            <input type="reset" value="清除" />
+
+            <h3>檢查項目類型Type:<br></h3>
+            <input type="checkbox" name="CT" value="CT">CT
+            <input type="checkbox" name="MRI" value="MRI">MRI
+            <input type="checkbox" name="X-ray" value="X-ray">X-ray<br><br>
+            <img src="http://cw1.tw/CH/images/article/H1377760222766.jpg"> <br>
+            <h3>Procedure:<br><input type="text" name="Procedure" value="PA and lateral views of the chest" size="20"><br></h3>
+            <h3>Clinical information:<br><textarea name="Clinical"></textarea><br></h3>
+            <h3>Comparison:<br><input type="text" name="ObjName" value="None." size="20"><br></h3>
+            <h3>
+                檢查結果:<br>
+                Fingding lungs：<select id="lung" name="檢查肺部"><br><br><br><br><br><br><br><br>
+            </h3>
+        <option value="1The lungs are clear." selected>The lungs are clear.
+        <option value="2The inspiratory volumes are small,and this probably accounts for some vascular crowding ahd atelectasis at the bases.">The inspiratory volumes are small,and this probably accounts for some vascular crowding ahd atelectasis at the bases.
+        <option value="3There is focal opacity at the right lung base most likelyrepresenting right lower lobe atelectasus.">There is focal opacity at the right lung base most likelyrepresenting right lower lobe atelectasus.
+        <option value="4There is focal opacity at the left lung base most likelyrepresenting right lower lobe atelectasus.">There is focal opacity at the left lung base most likelyrepresenting right lower lobe atelectasus.
+        <option value="5There is patchy opacity at both lung bases characteristic of atelectasis.">There is patchy opacity at both lung bases characteristic of atelectasis.
+        <option value="6There is patchy opacity at both lung bases characteristic of a combination of atelectasis and effusions.">There is patchy opacity at both lung bases characteristic of a combination of atelectasis and effusions.
+        <option value="7There is vascular congestion with increased interstital markings findings indicating mild cardiogenic edema.">There is vascular congestion with increased interstital markings findings indicating mild cardiogenic edema.
+        <option value="8There is vascular congestion with mixed interstital and patchy alveolar opacities,findingts indicating moderate cardiogenic edema.	">
+            There is vascular congestion with mixed interstital and patchy alveolar opacities,findingts indicating moderate cardiogenic edema.
+            option value="9There are multiple patchy areas of consolidation ,widely scattered about the lungs bilaterally.">There are multiple patchy areas of consolidation ,widely scattered about the lungs bilaterally.
+            option value="10There is mild pulmonary vascular engorgement without pulmonary edema.">There is mild pulmonary vascular engorgement without pulmonary edema.
+            </select><br>
+            <h3>Heart：<select id="Heart" name="檢查心臟"><br><br><br><br><br></h3>
+        <option value="1The heart is normal in size." selected>The heart is normal in size.
+        <option value="2There is mild cardiomegaly">There is mild cardiomegaly.
+        <option value="3There is moderate cardiomegaly.">There is moderate cardiomegaly.
+        <option value="4There is severe cardiomegaly.">There is severe cardiomegaly.
+        <option value="5There is marked cardiomegaly.">There is marked cardiomegaly.
+        <option value="6The heart is top normal in size.">
+            The heart is top normal in size.
+            </select><br>
+            <h3>Mediastinum：<select id="Med" name="縱膈"<br></h3>
+        <option value="1The mediastinum is within normal limits." selected>The mediastinum is within normal limits.
+        <option value="2Atherosclerotic calcifications are seen in the aorta.">Atherosclerotic calcifications are seen in the aorta.
+        <option value="3Post-operative changes are present in the mediastinum.">Post-operative changes are present in the mediastinum.
+        <option value="4The aortic contour is quite prominent,a finding likely indicating either an aortic aneurysm or dissection.">The aortic contour is quite prominent,a finding likely indicating either an aortic aneurysm or dissection.
+        <option value="5Degenerative changes are present in the thoracic spine.">
+            Degenerative changes are present in the thoracic spine.
+            </select><br>
+            <h3>Impression：<select id="Imp" name="印象"><br><br><br><br><br><br></h3>
+        <option value="1No active disease." selected>No active disease.
+        <option value="2Cardiomegaly.">Cardiomegaly.
+        <option value="3Mild cardiogenic edema.">Mild cardiogenic edema.
+        <option value="4Moderate cardiogenic edema.">Moderate cardiogenic edema.
+        <option value="5Severe edema,probably cardiogenic.">Severe edema,probably cardiogenic.
+        <option value="6Atelectasis">Atelectasis.
+        <option value="7Satisfactory post-operative status.">Satisfactory post-operative status.
+        <option value="8Pulmonary vacular congestion.">Pulmonary vacular congestion.
+        <option value="9Low inspiratory volumes.">  Low inspiratory volumes.
+            </select><br>
+            
+            <h3>其他:<br><textarea name="Others"></textarea></br></h3>
+
+            <input type="submit" value="傳送" onClick="check()" /> &nbsp;&nbsp;&nbsp;
+      
+           
+        
+    </form>
+</body>
+</html>
