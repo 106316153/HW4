@@ -3,9 +3,35 @@
 <head>
     <meta charset="utf-8">
     <h1><br><u>放射科胸部檢查表單radiology chest check form</u><br><h1>
-   
+
 </head>
+
+
+<h3> 病人基本資料Patient:<br></h3>
+職業Job:
+<select id="job" name="work">
+    <option value="Student" selected>學生
+    <option value="Teacher">老師
+
+    <option value="Others">其他
+</select>
+<br>
 <script type="text/javascript">
+    
+    a =new Array(3);
+    a[0]=new Array(3);
+    a[0][0]="學生";
+    a[0][1]="老師";
+    a[0][2]="其他";
+    function Ba(num)
+    {
+        document.orderForm1.work.selectdeIndex=0;
+        for(c=0;c < a[num].length;c++)
+        {
+            document.order.work.option[c]=new Option(a[num][c]);                            
+        }
+        document.order.work.length=a[num].length;        
+    }
     function checkn() {
         if (reg.name.value == "") {
             alert("未輸入姓名");
@@ -45,90 +71,78 @@
         alert('BMI= ' + bmi + '\n');
 
     }
+    
 
-
-    function get() {
-        var name_element = document.getElementById('name');
-        var name = name_element.value;
-
-        var bir_element = document.getElementById('bir');
-        var bir = bir_element.value;
-
-        var tel_element = document.getElementById('tel');
-        var tel = tel_element.value;
-
-        var age_element = document.getElementById('age');
-        var age = age_element.value;
-
-        var job_element = document.getElementById('job');
-        var job = job_element.value;
-
-
-        var gender;
-        var M_element = document.getElementById('M');
-        var M = M_element.checked;
-        var F_element = document.getElementById('F');
-        var F = F_element.checked;
-
-        if (M) {
-            gender = M_element.value;
+    function showData() {
+        var heart = document.getElementsByName('heart');
+        var selectedheart = "";
+        for (var i = 0; i <heart.length; i++)
+        {
+            if (heart[i].type == 'checkbox' && heart[i].checked == true)
+                selectedheart += "heart id=" + heart[i].id + " " + "heart value="+ heart[i].value + ',';
         }
-        else
-            gender = F_element.value;
-
-
-        alert(name + '\n' + bir + '\n' + tel + '\n' + age + '\n' + job + '\n' + gender + '\n' + bmi);
+        var table = document.getElementById("myTable");
+        for (var i = 1; i <= 1; i++)
+        {
+            var r=table.insertR(-1);
+            for (var j= 1; j <= 1; j++)
+            {
+                var c = r.insertC(-1);
+                c.innerHTML = selectedheart;
+            }
+        }
     }
-
-
+    
 </script>
 <body background="http://image.topit.cc/uploads/20180804/17/1533373232-DLWdIkvUul.jpg ">
     <form id="orderForm1" action="http://203.64.84.113/x/RQ_RS.aspx" method="post" name="reg">
-        <h3> 病人基本資料Patient:<br></h3>
-        <h4>姓名Name：<input id="name" type="text"  name="cname" value="" size="16" /><br></h4>
+        
+        <h4>姓名Name：<input id="name" type="text" name="cname" value="" size="16" /><br></h4>
         <input type="button" value="檢查姓名" onClick="checkn()" /> &nbsp;&nbsp;&nbsp;
-      
+
 
         <h4>性別Gender:<br></h4>
         <input type="radio" id="M" name="Gender" value="男性" checked> Male
         <input type="radio" id="F" name="Gender" value="女性"> Female <br>
-       
+
         <p>
-<label for="tall">身高:</label>
-<input name="tall" type="text" id="tall" size="10">
-公分</p>
-<p>體重:
-<input name="weight" type="text" id="weight" size="10">
-公斤</p>
-<p>
-<input type="submit" name="submit" id="submit" value="計算BMI" onClick="Bmi()">
-</p>
+            <label for="tall">身高:</label>
+            <input name="tall" type="text" id="tall" size="10">
+            公分
+        </p>
+        <p>
+            體重:
+            <input name="weight" type="text" id="weight" size="10">
+            公斤
+        </p>
+        <p>
+            <input type="submit" name="submit" id="submit" value="計算BMI" onClick="Bmi()">
+        </p>
 
-        <h4>生日Birth:<input type="text" id="bir"   name="cage" value="" size="10"><br></h4>
+        <h4>生日Birth:<input type="text" id="bir" name="cage" value="" size="10"><br></h4>
 
-         <h4>年齡Age:<input type="text" id="age" name="cage" value="" size="10"><br></h4>    
-        職業Job:<select id="job" name="work">
-            <option value="Student" selected>學生
-            <option value="Teacher">老師
-            <option value="IT">IT
-            <option value="Business">商業
-            <option value="Others">其他
-        </select><br>
+        <h4>年齡Age:<input type="text" id="age" name="cage" value="" size="10"><br></h4>
+       
+        <h4>電話號碼Tel:<input type="text" id="tel" name="ctel" value="" size="10"><br></h4>
+        <input type="button" value="檢查電話" onClick="checkt()" /> &nbsp;&nbsp;&nbsp;
 
-         <h4>電話號碼Tel:<input type="text" id="tel" name="ctel"  value=""  size="10"><br></h4>
-          <input type="button" value="檢查電話" onClick="checkt()" /> &nbsp;&nbsp;&nbsp;
-           
         <br> <input type="button" value="填入預設資料" onClick="load()" /> &nbsp;&nbsp;&nbsp;
-            <input type="reset" value="清除" /></br>
+        <input type="reset" value="清除" /></br>
 
-            <br> <input type="button" value="顯示已填資料" onClick="get()" /> &nbsp;&nbsp;&nbsp;
-            <input type="reset" value="清除" />
+        <h3>檢查項目類型Type:<br></h3>
+        <input type="checkbox" name="CT" value="CT">CT
+        <input type="checkbox" name="MRI" value="MRI">MRI
+        <input type="checkbox" name="X-ray" value="X-ray">X-ray<br><br>
+        <img src="http://cw1.tw/CH/images/article/H1377760222766.jpg"> <br>
 
-            <h3>檢查項目類型Type:<br></h3>
-            <input type="checkbox" name="CT" value="CT">CT
-            <input type="checkbox" name="MRI" value="MRI">MRI
-            <input type="checkbox" name="X-ray" value="X-ray">X-ray<br><br>
-            <img src="http://cw1.tw/CH/images/article/H1377760222766.jpg"> <br>
+        <h3>heart:<br></h3>          
+        <input type="checkbox" id="cname" name="正常" value="normal">normal in size 
+        <input type="checkbox"id="cmild" name="輕微" value="mild">mild cardiomegaly
+        <input type="checkbox"id="cmoderate" name="中等" value="moderate">moderate cardiomegaly
+        <input type="checkbox" id="csevere"  name="嚴重" value="severe">severe cardiomegaly
+
+        <input id="Button2" onclick="showData()" type="button" value="ShowData" />
+
             <h3>Procedure:<br><input type="text" name="Procedure" value="PA and lateral views of the chest" size="20"><br></h3>
             <h3>Clinical information:<br><textarea name="Clinical"></textarea><br></h3>
             <h3>Comparison:<br><input type="text" name="ObjName" value="None." size="20"><br></h3>
@@ -136,7 +150,7 @@
                 檢查結果:<br>
                 Fingding lungs：<select id="lung" name="檢查肺部"><br><br><br><br><br><br><br><br>
             </h3>
-        <option value="1The lungs are clear." selected>The lungs are clear.
+<option value="1The lungs are clear." selected>The lungs are clear.
         <option value="2The inspiratory volumes are small,and this probably accounts for some vascular crowding ahd atelectasis at the bases.">The inspiratory volumes are small,and this probably accounts for some vascular crowding ahd atelectasis at the bases.
         <option value="3There is focal opacity at the right lung base most likelyrepresenting right lower lobe atelectasus.">There is focal opacity at the right lung base most likelyrepresenting right lower lobe atelectasus.
         <option value="4There is focal opacity at the left lung base most likelyrepresenting right lower lobe atelectasus.">There is focal opacity at the left lung base most likelyrepresenting right lower lobe atelectasus.
@@ -148,15 +162,7 @@
             option value="9There are multiple patchy areas of consolidation ,widely scattered about the lungs bilaterally.">There are multiple patchy areas of consolidation ,widely scattered about the lungs bilaterally.
             option value="10There is mild pulmonary vascular engorgement without pulmonary edema.">There is mild pulmonary vascular engorgement without pulmonary edema.
             </select><br>
-            <h3>Heart：<select id="Heart" name="檢查心臟"><br><br><br><br><br></h3>
-        <option value="1The heart is normal in size." selected>The heart is normal in size.
-        <option value="2There is mild cardiomegaly">There is mild cardiomegaly.
-        <option value="3There is moderate cardiomegaly.">There is moderate cardiomegaly.
-        <option value="4There is severe cardiomegaly.">There is severe cardiomegaly.
-        <option value="5There is marked cardiomegaly.">There is marked cardiomegaly.
-        <option value="6The heart is top normal in size.">
-            The heart is top normal in size.
-            </select><br>
+           
             <h3>Mediastinum：<select id="Med" name="縱膈"<br></h3>
         <option value="1The mediastinum is within normal limits." selected>The mediastinum is within normal limits.
         <option value="2Atherosclerotic calcifications are seen in the aorta.">Atherosclerotic calcifications are seen in the aorta.
@@ -174,15 +180,11 @@
         <option value="6Atelectasis">Atelectasis.
         <option value="7Satisfactory post-operative status.">Satisfactory post-operative status.
         <option value="8Pulmonary vacular congestion.">Pulmonary vacular congestion.
-        <option value="9Low inspiratory volumes.">  Low inspiratory volumes.
+        <option value="9Low inspiratory volumes."> Low inspiratory volumes.
             </select><br>
-            
             <h3>其他:<br><textarea name="Others"></textarea></br></h3>
-
             <input type="submit" value="傳送" onClick="check()" /> &nbsp;&nbsp;&nbsp;
-      
-           
-        
+
     </form>
 </body>
 </html>
