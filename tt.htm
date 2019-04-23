@@ -17,20 +17,18 @@
 </select>
 <br>
 <script type="text/javascript">
-    
-    a =new Array(3);
-    a[0]=new Array(3);
-    a[0][0]="學生";
-    a[0][1]="老師";
-    a[0][2]="其他";
-    function Ba(num)
-    {
-        document.orderForm1.work.selectdeIndex=0;
-        for(c=0;c < a[num].length;c++)
-        {
-            document.order.work.option[c]=new Option(a[num][c]);                            
+
+    a = new Array(3);
+    a[0] = new Array(3);
+    a[0][0] = "學生";
+    a[0][1] = "老師";
+    a[0][2] = "其他";
+    function Ba(num) {
+        document.orderForm1.work.selectdeIndex = 0;
+        for (c = 0; c < a[num].length; c++) {
+            document.order.work.option[c] = new Option(a[num][c]);
         }
-        document.order.work.length=a[num].length;        
+        document.order.work.length = a[num].length;
     }
     function checkn() {
         if (reg.name.value == "") {
@@ -71,28 +69,43 @@
         alert('BMI= ' + bmi + '\n');
 
     }
-    
 
-    function showData() {
-        var heart = document.getElementsByName('heart');
-        var selectedheart = "";
-        for (var i = 0; i <heart.length; i++)
-        {
-            if (heart[i].type == 'checkbox' && heart[i].checked == true)
-                selectedheart += "heart id=" + heart[i].id + " " + "heart value="+ heart[i].value + ',';
+    function Type() {
+        var Arr1 = new Array();
+        var i = 1;
+        var j = 0;
+
+        var ai = 0;
+        var aj = 0;
+
+        if (document.getElementById("type1").checked) {
+            Arr1[ai, aj] = [document.getElementById("type1").id, document.getElementById("type1").value]
+            aj++;
         }
-        var table = document.getElementById("myTable");
-        for (var i = 1; i <= 1; i++)
-        {
-            var r=table.insertR(-1);
-            for (var j= 1; j <= 1; j++)
-            {
-                var c = r.insertC(-1);
-                c.innerHTML = selectedheart;
-            }
+        if (document.getElementById("type2").checked) {
+            Arr1[ai, aj] = [document.getElementById("type2").id, document.getElementById("type2").value]
+            aj++;
+        }
+        if (document.getElementById("type3").checked) {
+            Arr1[ai, aj] = [document.getElementById("type3").id, document.getElementById("type3").value]
+            aj++;
+        }
+        if (document.getElementById("type4").checked) {
+            Arr1[ai, aj] = [document.getElementById("type4").id, document.getElementById("type4").value]
+            aj++;
+        }
+        if (document.getElementById("type5").checked) {
+            Arr1[ai, aj] = [document.getElementById("type5").id, document.getElementById("type5").value]
+            aj++;
+        }
+        var firstRow = document.getElementById("table1").rows[i];
+        for (j = 0; j <= aj; j++) {
+            var x = firstRow.insertCell(0);
+            x.innerHTML = Arr1[0, j];
+            //x.innerHTML = Arr1[0,j],Arr1[j][0];
         }
     }
-    
+
 </script>
 <body background="http://image.topit.cc/uploads/20180804/17/1533373232-DLWdIkvUul.jpg ">
     <form id="orderForm1" action="http://203.64.84.113/x/RQ_RS.aspx" method="post" name="reg">
@@ -118,7 +131,19 @@
         <p>
             <input type="submit" name="submit" id="submit" value="計算BMI" onClick="Bmi()">
         </p>
-
+        檢查項目類型Type:</br>
+                    <input type="checkbox" id='type1'class="checks" value="CT ">CT <br>
+                    <input type="checkbox" id='type2'class="checks" value="MRI ">MRI <br>
+                    <input type="checkbox" id='type3'class="checks" value="X-ray ">X-ray<br>
+                    <input type="checkbox" id='type4'class="checks" value="PET">PET<br>
+                    <input type="checkbox" id='type5'class="checks" value="SPET ">SPET<br>
+                    <table border="1" id="table1">
+                         <tr>
+                         <td rowspan="2">Type is</td>
+                        <tr> 
+                         </tr>
+                        </table>
+                        <input type="button" onclick="Type()" value="多項選擇"><br>
         <h4>生日Birth:<input type="text" id="bir" name="cage" value="" size="10"><br></h4>
 
         <h4>年齡Age:<input type="text" id="age" name="cage" value="" size="10"><br></h4>
@@ -129,19 +154,6 @@
         <br> <input type="button" value="填入預設資料" onClick="load()" /> &nbsp;&nbsp;&nbsp;
         <input type="reset" value="清除" /></br>
 
-        <h3>檢查項目類型Type:<br></h3>
-        <input type="checkbox" name="CT" value="CT">CT
-        <input type="checkbox" name="MRI" value="MRI">MRI
-        <input type="checkbox" name="X-ray" value="X-ray">X-ray<br><br>
-        <img src="http://cw1.tw/CH/images/article/H1377760222766.jpg"> <br>
-
-        <h3>heart:<br></h3>          
-        <input type="checkbox" id="cname" name="正常" value="normal">normal in size 
-        <input type="checkbox"id="cmild" name="輕微" value="mild">mild cardiomegaly
-        <input type="checkbox"id="cmoderate" name="中等" value="moderate">moderate cardiomegaly
-        <input type="checkbox" id="csevere"  name="嚴重" value="severe">severe cardiomegaly
-
-        <input id="Button2" onclick="showData()" type="button" value="ShowData" />
 
             <h3>Procedure:<br><input type="text" name="Procedure" value="PA and lateral views of the chest" size="20"><br></h3>
             <h3>Clinical information:<br><textarea name="Clinical"></textarea><br></h3>
@@ -184,7 +196,7 @@
             </select><br>
             <h3>其他:<br><textarea name="Others"></textarea></br></h3>
             <input type="submit" value="傳送" onClick="check()" /> &nbsp;&nbsp;&nbsp;
-
+            
     </form>
 </body>
 </html>
